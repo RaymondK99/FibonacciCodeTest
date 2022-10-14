@@ -43,6 +43,7 @@ public class TestFibonacci {
         assertEquals("ABCCDDD", Fibonacci.solve("rABCCDDDDDDdgdgdfg"));
 
 
+        assertEquals("", Fibonacci.solve(""));
         assertEquals("a", Fibonacci.solve("aaa"));
         assertEquals("AB", Fibonacci.solve("ABBB"));
         assertEquals("ABCC", Fibonacci.solve("ABCCC"));
