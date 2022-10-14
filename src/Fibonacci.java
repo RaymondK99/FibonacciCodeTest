@@ -55,11 +55,14 @@ public class Fibonacci {
         int acc = 0;
         if (array.length == 1 && array[0] == 1) {
             acc = 1;
-        } else if (array.length >= 2 && array[0] == 1 && array[1] == 1) {
+        } else if (array.length >= 2 && array[0] == 1 && array[1] >= 1) {
             acc = 2;
             for(int i=2;i<array.length;i++) {
                 if (array[i] == array[i-1] + array[i-2]) {
                     acc += array[i];
+                } else if (array[i] > array[i-1] + array[i-2]) {
+                    acc += array[i-1] + array[i-2];
+                    break;
                 } else {
                     break;
                 }

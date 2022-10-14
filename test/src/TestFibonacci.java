@@ -38,10 +38,13 @@ public class TestFibonacci {
     @Test
     public void testSolve() {
         assertEquals("A", Fibonacci.solve("A"));
-        assertEquals("A", Fibonacci.solve("ACCCCC"));
+        assertEquals("AC", Fibonacci.solve("ACCCCC"));
+        assertEquals("ABCC", Fibonacci.solve("ABCCCC"));
+        assertEquals("ABCCDDD", Fibonacci.solve("rABCCDDDDDDdgdgdfg"));
 
-        assertEquals("AB", Fibonacci.solve("ABCCCC"));
-        assertEquals("ABCCDDD", Fibonacci.solve("rABCCDDDdgdgdfg"));
 
+        assertEquals("a", Fibonacci.solve("aaa"));
+        assertEquals("AB", Fibonacci.solve("ABBB"));
+        assertEquals("ABCC", Fibonacci.solve("ABCCC"));
     }
 }
