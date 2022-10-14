@@ -31,7 +31,7 @@ public class TestFibonacci {
         assertEquals(4, Fibonacci.getFibonacciSequenceSum(new Integer[]{1,1,2}));
         assertEquals(4, Fibonacci.getFibonacciSequenceSum(new Integer[]{1,1,2,1}));
         assertEquals(0, Fibonacci.getFibonacciSequenceSum(new Integer[]{0,1,1,2,1}));
-        assertEquals(1, Fibonacci.getFibonacciSequenceSum(new Integer[]{1,3,1,2,1}));
+        assertEquals(2, Fibonacci.getFibonacciSequenceSum(new Integer[]{1,3,1,2,1}));
 
     }
 
