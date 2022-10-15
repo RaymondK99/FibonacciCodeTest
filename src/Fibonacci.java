@@ -12,11 +12,8 @@ public class Fibonacci {
     }
 
     public static String getFibonacciString(String input) {
-        int fibonacciSum = 0;
-        int prevPrev = 0;
-        int prev = 0;
-        int currentFibonacciNumber = 1;
-        int index = 0;
+        int fibonacciSum = 0, prevPrev = 0, prev = 0, currentFibonacciNumber = 1, index = 0;
+
         while(true) {
             int numberOfConsecutiveChars = getConsecutiveCount(input.substring(index));
             if (currentFibonacciNumber == numberOfConsecutiveChars) {
@@ -52,5 +49,4 @@ public class Fibonacci {
 
         return i;
     }
-
 }
