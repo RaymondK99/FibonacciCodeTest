@@ -15,7 +15,7 @@ public class Fibonacci {
         int fibonacciSum = 0, prevPrev = 0, prev = 0, currentFibonacciNumber = 1, index = 0;
 
         while(true) {
-            int numberOfConsecutiveChars = getConsecutiveCount(input.substring(index));
+            int numberOfConsecutiveChars = getConsecutiveCount(input, index);
             if (currentFibonacciNumber == numberOfConsecutiveChars) {
                 // Expected number of chars
                 fibonacciSum += currentFibonacciNumber;
@@ -38,15 +38,13 @@ public class Fibonacci {
         return input.substring(0, fibonacciSum);
     }
 
-    public static int getConsecutiveCount(String input) {
-        if (input.isEmpty()) return 0;
-        int i = 1;
-        for(;i<input.length();i++) {
-            if (input.charAt(i-1) != input.charAt(i)) {
-                break;
-            }
+    public static int getConsecutiveCount(String input, int offset) {
+        if (input.isEmpty() || offset >= input.length()) return 0;
+        int index = offset, nextIndex = index+1;
+        while(nextIndex < input.length() && input.charAt(index) == input.charAt(nextIndex)) {
+            nextIndex++;
+            index++;
         }
-
-        return i;
+        return nextIndex - offset;
     }
 }

@@ -36,6 +36,18 @@ public class TestFibonacci {
         assertEquals("a", Fibonacci.solve("aaa"));
         assertEquals("AB", Fibonacci.solve("ABBB"));
         assertEquals("ABCC", Fibonacci.solve("ABCCC"));
+    }
+
+    @Test
+    public void testSolve2() {
+        assertEquals(0, Fibonacci.getConsecutiveCount("", 0));
+        assertEquals(1, Fibonacci.getConsecutiveCount("A", 0));
+        assertEquals(3, Fibonacci.getConsecutiveCount("AAA", 0));
+        assertEquals(3, Fibonacci.getConsecutiveCount("AAAB", 0));
+        assertEquals(1, Fibonacci.getConsecutiveCount("AAABB", 2));
+        assertEquals(2, Fibonacci.getConsecutiveCount("AAABB", 3));
+        assertEquals(1, Fibonacci.getConsecutiveCount("AAABB", 4));
+        assertEquals(0, Fibonacci.getConsecutiveCount("AAABB", 5));
 
     }
 
