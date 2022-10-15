@@ -1,77 +1,56 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Comparator;
+import java.util.stream.IntStream;
 
 public class Fibonacci {
 
-
     public static String solve(String input) {
-        if (input.length() == 0) {
-            return input;
-        }
-
-        int maxFibonacciSum = -1;
-        int startIndex = -1;
-        for(int i=0;i<input.length();i++) {
-            Integer[] sequence = getSequence(input.substring(i));
-            int fibonacciSum = Fibonacci.getFibonacciSequenceSum(sequence);
-            if (fibonacciSum > maxFibonacciSum) {
-                maxFibonacciSum = fibonacciSum;
-                startIndex = i;
-            }
-        }
-
-        return input.substring(startIndex, startIndex+maxFibonacciSum);
+        return IntStream.range(0, input.length())
+                .mapToObj(input::substring)
+                .map(Fibonacci::getFibonacciString)
+                .max(Comparator.comparingInt(String::length))
+                .orElse("");
     }
 
-    public static Integer[] getSequence(String input) {
-        List<Integer> output = new LinkedList<>();
-
-        int lastChar = -1;
-        int acc = 0;
-        int i = 0;
-        for(;i<input.length();i++) {
-            int ch = input.charAt(i);
-
-            if (i == 0) {
-                acc = 1;
-            } else if (lastChar != ch) {
-                output.add(acc);
-                acc = 1;
+    public static String getFibonacciString(String input) {
+        int fibonacciSum = 0;
+        int prevPrev = 0;
+        int prev = 0;
+        int currentFibonacciNumber = 1;
+        int index = 0;
+        while(true) {
+            int numberOfConsecutiveChars = getConsecutiveCount(input.substring(index));
+            if (currentFibonacciNumber == numberOfConsecutiveChars) {
+                // Expected number of chars
+                fibonacciSum += currentFibonacciNumber;
+            } else if (currentFibonacciNumber < numberOfConsecutiveChars) {
+                // Too many, end here
+                fibonacciSum += currentFibonacciNumber;
+                break;
             } else {
-                acc++;
+                // Unexpected number of chars, stop
+                break;
             }
 
-            lastChar = ch;
+            // Prepare next fibonacci number and keep track of sum
+            prevPrev = prev;
+            prev = currentFibonacciNumber;
+            currentFibonacciNumber = prev + prevPrev;
+            index += numberOfConsecutiveChars;
         }
 
-        if (i>0) {
-            output.add(acc);
-        }
-
-        return output.toArray(Integer[]::new);
+        return input.substring(0, fibonacciSum);
     }
 
-    public static int getFibonacciSequenceSum(Integer[] array) {
-        int acc = 0;
-        if (array.length == 1 && array[0] == 1) {
-            acc = 1;
-        } else if (array.length >= 2 && array[0] == 1 && array[1] >= 1) {
-            acc = 2;
-            for(int i=2;i<array.length;i++) {
-                if (array[i] == array[i-1] + array[i-2]) {
-                    acc += array[i];
-                } else if (array[i] > array[i-1] + array[i-2]) {
-                    acc += array[i-1] + array[i-2];
-                    break;
-                } else {
-                    break;
-                }
+    public static int getConsecutiveCount(String input) {
+        if (input.isEmpty()) return 0;
+        int i = 1;
+        for(;i<input.length();i++) {
+            if (input.charAt(i-1) != input.charAt(i)) {
+                break;
             }
-        } else if (array.length > 0 && array[0] == 1) {
-            acc = 1;
         }
 
-        return acc;
+        return i;
     }
 
 }

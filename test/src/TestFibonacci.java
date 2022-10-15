@@ -8,30 +8,20 @@ public class TestFibonacci {
 
 
     @Test
-    public void testBuildIntegerArray1() {
-        assertEquals(0, Arrays.compare(new Integer[]{1}, Fibonacci.getSequence("A")));
-        assertEquals(0, Arrays.compare(new Integer[]{1,1}, Fibonacci.getSequence("AB")));
-        assertEquals(0, Arrays.compare(new Integer[]{1,1,1}, Fibonacci.getSequence("ABC")));
-    }
-
-    @Test
-    public void testBuildIntegerArray2() {
-        assertEquals(0, Arrays.compare(new Integer[]{}, Fibonacci.getSequence("")));
-        assertEquals(0, Arrays.compare(new Integer[]{3}, Fibonacci.getSequence("AAA")));
-        assertEquals(0, Arrays.compare(new Integer[]{1,3,1}, Fibonacci.getSequence("ABBBA")));
-        assertEquals(0, Arrays.compare(new Integer[]{1,1,1,4,4,2}, Fibonacci.getSequence("ABCNNNNXXXXAA")));
-    }
+    public void testGetFibonacciString() {
+        assertEquals("", Fibonacci.getFibonacciString(""));
+        assertEquals("A", Fibonacci.getFibonacciString("A"));
 
 
-    @Test
-    public void testCalcFibbLength() {
-        assertEquals(0, Fibonacci.getFibonacciSequenceSum(new Integer[]{}));
-        assertEquals(1, Fibonacci.getFibonacciSequenceSum(new Integer[]{1}));
-        assertEquals(2, Fibonacci.getFibonacciSequenceSum(new Integer[]{1,1}));
-        assertEquals(4, Fibonacci.getFibonacciSequenceSum(new Integer[]{1,1,2}));
-        assertEquals(4, Fibonacci.getFibonacciSequenceSum(new Integer[]{1,1,2,1}));
-        assertEquals(0, Fibonacci.getFibonacciSequenceSum(new Integer[]{0,1,1,2,1}));
-        assertEquals(2, Fibonacci.getFibonacciSequenceSum(new Integer[]{1,3,1,2,1}));
+        assertEquals("A", Fibonacci.getFibonacciString("AA"));
+        assertEquals("AB", Fibonacci.getFibonacciString("AB"));
+
+        assertEquals("AB", Fibonacci.getFibonacciString("ABC"));
+        assertEquals("ABCC", Fibonacci.getFibonacciString("ABCC"));
+        assertEquals("ABCC", Fibonacci.getFibonacciString("ABCCC"));
+        assertEquals("ABCC", Fibonacci.getFibonacciString("ABCCCDDDDDDD"));
+
+        assertEquals("ABCCDDD", Fibonacci.getFibonacciString("ABCCDDDDDDD"));
 
     }
 
@@ -42,10 +32,11 @@ public class TestFibonacci {
         assertEquals("ABCC", Fibonacci.solve("ABCCCC"));
         assertEquals("ABCCDDD", Fibonacci.solve("rABCCDDDDDDdgdgdfg"));
 
-
         assertEquals("", Fibonacci.solve(""));
         assertEquals("a", Fibonacci.solve("aaa"));
         assertEquals("AB", Fibonacci.solve("ABBB"));
         assertEquals("ABCC", Fibonacci.solve("ABCCC"));
+
     }
+
 }
